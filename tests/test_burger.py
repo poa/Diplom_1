@@ -1,3 +1,5 @@
+import pytest
+
 from praktikum.burger import Burger
 
 from testdata import TData as TD
@@ -28,19 +30,19 @@ class TestBurger:
         assert test_burger.ingredients == []
 
     def test_move_ingredients_move_last_to_first_successfully(self, test_burger):
-        new_ingredient1 = TD.get_ingredient()
-        new_ingredient2 = TD.get_ingredient()
-        test_burger.add_ingredient(new_ingredient1)
-        test_burger.add_ingredient(new_ingredient2)
+        new_ingredient = TD.get_ingredient()
+        new_ingredient_last = TD.get_ingredient()
+        test_burger.add_ingredient(new_ingredient)
+        test_burger.add_ingredient(new_ingredient_last)
         test_burger.move_ingredient(len(test_burger.ingredients) - 1, 0)
 
-        assert test_burger.ingredients[0] == new_ingredient2
+        assert test_burger.ingredients[0] == new_ingredient_last
 
-    def test_get_price_simple_burger_returns_correct_value(self, test_burger):
-        assert test_burger.get_price() == TD.get_burger_price("test")
+    @pytest.mark.parametrize("variant", ["test", "full"])
+    def test_get_price_returns_correct_value(self, request, variant):
+        burger = request.getfixturevalue(f"{variant}_burger")
 
-    def test_get_price_full_burger_returns_correct_value(self, full_burger):
-        assert full_burger.get_price() == TD.get_burger_price("full")
+        assert burger.get_price() == TD.get_burger_price(variant)
 
     def test_get_receipt_prints_correct_values(self, full_burger):
         receipt = full_burger.get_receipt()
