@@ -16,6 +16,15 @@ class Const:
         "sausage": {"type": INGREDIENT_TYPE_FILLING, "name": "sausage", "price": 300},
         "chili": {"type": INGREDIENT_TYPE_SAUCE, "name": "chili sauce", "price": 300},
         "hot": {"type": INGREDIENT_TYPE_SAUCE, "name": "hot sauce", "price": 100},
-        "sourcreame": {"type": INGREDIENT_TYPE_SAUCE, "name": "sour cream", "price": 200},
+        "sour cream": {"type": INGREDIENT_TYPE_SAUCE, "name": "sour cream", "price": 200},
         "test": {"type": INGREDIENT_TYPE_SAUCE, "name": "test sauce", "price": 199},
     }
+
+    FULL_BURGER_PRICE = 700
+    FULL_BURGER_RECEIPT = """(==== black bun ====)
+= sauce sour cream =
+= filling cutlet =
+= filling dinosaur =
+(==== black bun ====)
+
+Price: 700"""
