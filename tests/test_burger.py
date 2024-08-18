@@ -3,7 +3,6 @@ import pytest
 from praktikum.burger import Burger
 
 from testdata import TData as TD
-from testconst import Const as TC
 
 
 class TestBurger:
@@ -38,13 +37,18 @@ class TestBurger:
 
         assert test_burger.ingredients[0] == new_ingredient_last
 
-    @pytest.mark.parametrize("variant", ["test", "full"])
-    def test_get_price_returns_correct_value(self, request, variant):
-        burger = request.getfixturevalue(f"{variant}_burger")
+    @pytest.mark.parametrize(
+        "bun_name,ingredients_names", TD.burger_param_list
+    )
+    def test_get_price_returns_correct_value(self, bun_name, ingredients_names):
+        burger = TD.get_burger(bun_name, ingredients_names)
+        burger_ref_price = TD.get_burger_price(bun_name, ingredients_names)
+        assert burger.get_price() == burger_ref_price
 
-        assert burger.get_price() == TD.get_burger_price(variant)
-
-    def test_get_receipt_prints_correct_values(self, full_burger):
-        receipt = full_burger.get_receipt()
-
-        assert receipt == TC.FULL_BURGER_RECEIPT
+    @pytest.mark.parametrize(
+        "bun_name,ingredients_names", TD.burger_param_list
+    )
+    def test_get_receipt_prints_correct_values(self, bun_name, ingredients_names):
+        burger = TD.get_burger(bun_name, ingredients_names)
+        burger_ref_receipt = TD.get_burger_receipt(bun_name, ingredients_names)
+        assert burger.get_receipt() == burger_ref_receipt

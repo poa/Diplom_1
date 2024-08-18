@@ -1,6 +1,4 @@
-from unittest.mock import patch
 from praktikum.database import Database
-from testdata import TData as TD
 
 
 class TestDatabase:

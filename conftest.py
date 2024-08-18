@@ -38,13 +38,3 @@ def test_burger(test_bun, test_ingredient):
     yield burger
     del burger
 
-
-@pytest.fixture(scope="function")
-def full_burger():
-    burger = Burger()
-    burger.set_buns(TD.get_bun("black"))
-    burger.add_ingredient(TD.get_ingredient("sour cream"))
-    burger.add_ingredient(TD.get_ingredient("cutlet"))
-    burger.add_ingredient(TD.get_ingredient("dinosaur"))
-    yield burger
-    del burger
