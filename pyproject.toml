@@ -8,7 +8,7 @@ line-length = 100
 omit = [
     # omit this single file
     "praktikum.py",
-    "praktikkum/ingredient_types.py"
+    "praktikum/ingredient_types.py"
 ]
 
 [tool.pytest.ini_options]

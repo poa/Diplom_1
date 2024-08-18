@@ -21,7 +21,13 @@
 pip install -r requirements.txt
 ```
 
-Запуск автотестов и создание HTML-отчета о покрытии
+Запуск автотестов и вывод краткого отчёта о покрытии в консоль
+
+```shell
+pytest --cov=praktikum
+```
+
+Запуск автотестов и создание HTML-отчёта о покрытии
 
 ```shell
 pytest --cov=praktikum --cov-report=html
