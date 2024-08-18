@@ -1,14 +1,18 @@
-from praktikum.ingredient import Ingredient
+import pytest
+
 from testconst import Const as TC
+from testdata import TData as TD
 
 
 class TestIngredients:
-    def test_constructor_makes_correct_ingredient(self, test_ingredient):
-        ingredient = TC.INGREDIENTS.get("test")
+    @pytest.mark.parametrize("ingredient_name", list(TC.INGREDIENTS.keys()))
+    def test_constructor_makes_correct_ingredient(self, ingredient_name):
+        ingredient = TD.get_ingredient(ingredient_name)
+        ingredient_data = TC.INGREDIENTS.get(ingredient_name)
         assert (
-                test_ingredient.type == ingredient.get("type")
-                and test_ingredient.name == ingredient.get("name")
-                and test_ingredient.price == ingredient.get("price")
+            ingredient.type == ingredient_data.get("type")
+            and ingredient.name == ingredient_data.get("name")
+            and ingredient.price == ingredient_data.get("price")
         )
 
     def test_get_name_returns_correct_name(self, test_ingredient):
